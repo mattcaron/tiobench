@@ -22,8 +22,8 @@ VERSION=$(shell egrep "tiotest v[0-9]+.[0-9]+" tiotest.c | cut -d " " -f 7 | sed
 DISTNAME=$(PROJECT)-$(VERSION)
 INSTALL=install
 PREFIX=/usr/local
-BINDIR=$(PREFIX)/bin
-DOCDIR=/usr/local/doc/$(DISTNAME)
+BINDIR=$(DESTDIR)$(PREFIX)/bin
+DOCDIR=$(DESTDIR)/usr/local/doc/$(DISTNAME)
 
 all: $(EXE)
 
