@@ -1,8 +1,8 @@
 # Makefile for tiotest
 
-CC=gcc
+CC?=gcc
 #CFLAGS=-O3 -fomit-frame-pointer -Wall
-CFLAGS=-O2 -Wall
+CFLAGS?=-O2 -Wall
 
 #DEFINES=-DUSE_MMAP 
 #-DUSE_MADVISE
@@ -14,7 +14,7 @@ CFLAGS=-O2 -Wall
 
 #DEFINES=
 
-LINK=gcc
+LINK?=gcc
 EXE=tiotest
 PROJECT=tiobench
 # do it once instead of each time referenced

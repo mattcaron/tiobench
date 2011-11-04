@@ -15,7 +15,7 @@ $(shell echo "**** Building $(COMPONENT) for $(PROD) ****" >&2)
 all: install
 
 build:
-	$(MAKE) -j $(MAKE_JOBS)
+	CC="$(CC)" CFLAGS="$(CFLAGS)" LINK="$(CC)" $(MAKE) -j $(MAKE_JOBS)
 
 clean:
 	$(MAKE) clean
