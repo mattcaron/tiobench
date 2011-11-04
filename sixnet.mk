@@ -1,4 +1,5 @@
 export BUILD_DIR ?= $(PWD)
+ALLOW_WARNINGS:=1 
 include $(BUILD_DIR)/rules/common.mk
 
 COMPONENT := tiobench
