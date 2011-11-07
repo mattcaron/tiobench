@@ -168,6 +168,8 @@ foreach $dir (@dirs) {
                   $stat_data{$identifier}{$thread}{$size}{$block}{$field}{'stime'} ) / 
                   $stat_data{$identifier}{$thread}{$size}{$block}{$field}{'time'};
                $stat_data{$identifier}{$thread}{$size}{$block}{$field}{'cpueff'} =
+                  ($stat_data{$identifier}{$thread}{$size}{$block}{$field}{'cpu'} == 0) ?
+                  '0' :
                   ($stat_data{$identifier}{$thread}{$size}{$block}{$field}{'rate'} /
                   ($stat_data{$identifier}{$thread}{$size}{$block}{$field}{'cpu'}/100));
             }
@@ -195,6 +197,9 @@ $report{'SEQ_READS'}    = "Sequential Reads";
 $report{'RAND_READS'}   = "Random Reads";
 $report{'SEQ_WRITES'}   = "Sequential Writes";
 $report{'RAND_WRITES'}  = "Random Writes";
+
+# The top is the same for all 4 reports
+$^ = 'SEQ_READS_TOP';
 
 foreach my $title ('SEQ_READS', 'RAND_READS', 'SEQ_WRITES', 'RAND_WRITES') {
    $-=0; $~="$title"; $^L=''; # reporting variables
