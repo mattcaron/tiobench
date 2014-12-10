@@ -51,7 +51,7 @@ clean:
 
 dist:
 	ln -s . $(DISTNAME)
-	tar -zcvf $(DISTNAME).tar.gz $(DISTNAME)/*.c $(DISTNAME)/*.h $(DISTNAME)/Makefile $(DISTNAME)/COPYING $(DISTNAME)/README $(DISTNAME)/TODO $(DISTNAME)/ChangeLog $(DISTNAME)/BUGS $(DISTNAME)/tiobench.pl $(DISTNAME)/scripts
+	tar -zcvf $(DISTNAME).tar.gz $(DISTNAME)/*.c $(DISTNAME)/*.h $(DISTNAME)/Makefile $(DISTNAME)/COPYING $(DISTNAME)/README.md $(DISTNAME)/TODO $(DISTNAME)/ChangeLog $(DISTNAME)/BUGS $(DISTNAME)/tiobench.pl $(DISTNAME)/scripts
 	rm $(DISTNAME)
 
 install:
@@ -64,7 +64,7 @@ install:
 	$(INSTALL) tiotest $(BINDIR)
 	$(INSTALL) tiobench.pl $(BINDIR)
 	$(INSTALL) scripts/tiosum.pl $(BINDIR)
-	$(INSTALL) README $(DOCDIR)
+	$(INSTALL) README.md $(DOCDIR)
 	$(INSTALL) BUGS $(DOCDIR)
 	$(INSTALL) COPYING $(DOCDIR)
 	$(INSTALL) ChangeLog $(DOCDIR)
