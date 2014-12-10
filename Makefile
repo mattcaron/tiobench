@@ -2,7 +2,7 @@
 
 CC?=gcc
 #CFLAGS=-O3 -fomit-frame-pointer -Wall
-CFLAGS?=-O2 -Wall
+CFLAGS?=-O2 -Wall 
 #CFLAGS=-O0 -g -Wall
 
 # This enables support for 64bit file offsets, allowing
@@ -38,10 +38,11 @@ test_largefiles.o: tiotest.h test_largefiles.c
 	$(CC) -c -DUSE_LARGEFILES $(CFLAGS) $(DEFINES) test_largefiles.c -o test_largefiles.o
 
 $(TIOTEST): tiotest.o crc32.o
-	$(LINK) -o $(TIOTEST) tiotest.o crc32.o -lpthread
+	$(LINK) -o $(TIOTEST) $(LDFLAGS) tiotest.o crc32.o -lpthread
 	@echo
 	@echo "./tiobench.pl --help for usage options"
 	@echo
+
 $(TEST_LARGE): test_largefiles.o
 	$(LINK) -o $(TEST_LARGE) test_largefiles.o
 
@@ -50,7 +51,7 @@ clean:
 
 dist:
 	ln -s . $(DISTNAME)
-	tar -zcvf $(DISTNAME).tar.gz $(DISTNAME)/*.c $(DISTNAME)/*.h $(DISTNAME)/Makefile $(DISTNAME)/COPYING $(DISTNAME)/README $(DISTNAME)/TODO $(DISTNAME)/ChangeLog $(DISTNAME)/BUGS $(DISTNAME)/tiobench.pl $(DISTNAME)/tiosum.pl $(DISTNAME)/scripts
+	tar -zcvf $(DISTNAME).tar.gz $(DISTNAME)/*.c $(DISTNAME)/*.h $(DISTNAME)/Makefile $(DISTNAME)/COPYING $(DISTNAME)/README $(DISTNAME)/TODO $(DISTNAME)/ChangeLog $(DISTNAME)/BUGS $(DISTNAME)/tiobench.pl $(DISTNAME)/scripts
 	rm $(DISTNAME)
 
 install:
