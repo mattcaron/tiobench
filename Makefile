@@ -63,7 +63,7 @@ install:
 	fi;
 	$(INSTALL) tiotest $(BINDIR)
 	$(INSTALL) tiobench.pl $(BINDIR)
-	$(INSTALL) tiosum.pl $(BINDIR)
+	$(INSTALL) scripts/tiosum.pl $(BINDIR)
 	$(INSTALL) README $(DOCDIR)
 	$(INSTALL) BUGS $(DOCDIR)
 	$(INSTALL) COPYING $(DOCDIR)
