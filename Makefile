@@ -1,8 +1,8 @@
 # Makefile for tiotest
 
-CC=gcc
+CC?=gcc
 #CFLAGS=-O3 -fomit-frame-pointer -Wall
-CFLAGS=-O2 -Wall 
+CFLAGS?=-O2 -Wall 
 #CFLAGS=-O0 -g -Wall
 
 # This enables support for 64bit file offsets, allowing
@@ -14,7 +14,7 @@ DEFINES=-DUSE_LARGEFILES
 # in process scope despite of threads
 # DEFINES=-DGETRUSAGE_PROCESS_SCOPE
 
-LINK=gcc
+LINK?=gcc
 TIOTEST=tiotest
 TEST_LARGE=test_largefiles
 PROJECT=tiobench
@@ -23,8 +23,8 @@ VERSION=$(shell egrep "tiotest v[0-9]+.[0-9]+" tiotest.c | cut -d " " -f 8 | sed
 DISTNAME=$(PROJECT)-$(VERSION)
 INSTALL=install
 PREFIX=/usr/local
-BINDIR=$(PREFIX)/bin
-DOCDIR=/usr/local/doc/$(DISTNAME)
+BINDIR=$(DESTDIR)$(PREFIX)/bin
+DOCDIR=$(DESTDIR)/usr/local/doc/$(DISTNAME)
 
 all: $(TEST_LARGE) $(TIOTEST)
 
@@ -51,7 +51,7 @@ clean:
 
 dist:
 	ln -s . $(DISTNAME)
-	tar -zcvf $(DISTNAME).tar.gz $(DISTNAME)/*.c $(DISTNAME)/*.h $(DISTNAME)/Makefile $(DISTNAME)/COPYING $(DISTNAME)/README $(DISTNAME)/TODO $(DISTNAME)/ChangeLog $(DISTNAME)/BUGS $(DISTNAME)/tiobench.pl $(DISTNAME)/scripts
+	tar -zcvf $(DISTNAME).tar.gz $(DISTNAME)/*.c $(DISTNAME)/*.h $(DISTNAME)/Makefile $(DISTNAME)/COPYING $(DISTNAME)/README.md $(DISTNAME)/TODO $(DISTNAME)/ChangeLog $(DISTNAME)/BUGS $(DISTNAME)/tiobench.pl $(DISTNAME)/scripts
 	rm $(DISTNAME)
 
 install:
@@ -63,8 +63,8 @@ install:
 	fi;
 	$(INSTALL) tiotest $(BINDIR)
 	$(INSTALL) tiobench.pl $(BINDIR)
-	$(INSTALL) tiosum.pl $(BINDIR)
-	$(INSTALL) README $(DOCDIR)
+	$(INSTALL) scripts/tiosum.pl $(BINDIR)
+	$(INSTALL) README.md $(DOCDIR)
 	$(INSTALL) BUGS $(DOCDIR)
 	$(INSTALL) COPYING $(DOCDIR)
 	$(INSTALL) ChangeLog $(DOCDIR)
